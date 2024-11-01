@@ -1,0 +1,9 @@
+name = "gamify-app-backend"
+main = "src/index.js"
+compatibility_date = "2024-10-19"
+compatibility_flags = [ "nodejs_compat" ]
+
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMmQ5OWVkZjgtMDE5My00MWRkLWE4NjEtZGVlMzIxNDFlOTZjIiwidGVuYW50X2lkIjoiMjFmOGU2MmFhM2ZhZjYxYjhkMjVjMDM1YWVlMWMwNThlZmZkNjljMDU3YzVjZjZkMzRlZjRkZWM0N2E5MGJmNSIsImludGVybmFsX3NlY3JldCI6ImMyMDhmNjMyLTBmYjUtNDllZi1hZWZjLWViMWY2NDdmOGFiOCJ9.8QJTF0sv94So_Yrbnufwt_Q5IF5T1-PSjulflvyuLIk"
+JWT_SECRET='my_secret_key'
