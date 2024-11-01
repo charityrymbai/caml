@@ -75,7 +75,7 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     }, []);
   return (
     (innerWidth<768)?
-    <div className='z-50 relative'>
+    <div className='z-50 relative bg-transparent'>
     <Sidebar>
         <SidebarItem
                 goToPage=""
