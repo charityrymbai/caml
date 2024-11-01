@@ -4,6 +4,7 @@ import "./index.css";
 import MainContent from "./Pages/MainContent.jsx";
 import Header from "./Components/Header";
 import Portal from "./Pages/Portal.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
 import StudentForm from "./Pages/Profile.jsx"
 import LearningPage  from "./Pages/Direct.jsx";
 import FileSelector from "./Pages/Selector.jsx";
@@ -15,8 +16,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainContent />} />
                     <Route path="/auth" element={<Portal />} />
-                    <Route path="/profile" element={<StudentForm />} />
-                    <Route path="*" element={<h1>Not Found</h1>} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/profile" element={<StudentForm/>}/>
                     <Route path="/direct" element={<LearningPage/>}/>
                     <Route path="/selector" element={<FileSelector/>}/>
                 </Routes>

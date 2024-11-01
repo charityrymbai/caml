@@ -9,7 +9,9 @@ export default {
       'courier_new': ['Courier Prime', 'monospace'],
       minecraft:['Tiny5', 'sans-serif'],
       baloo:['"Baloo Bhai 2"', 'sans-serif'],
-      curs:['"Playwrite GB S"', 'sans-serif']
+      curs:['"Playwrite GB S"', 'sans-serif'],
+      anton:['"Anton"', 'sans-serif'],
+      merienda:['"Merienda"', 'sans-serif'],
     },
     extend: {
       backdropBlur: {
