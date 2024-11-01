@@ -7,6 +7,7 @@ import Portal from "./Pages/Portal.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import StudentForm from "./Pages/Profile.jsx"
 import LearningPage  from "./Pages/Direct.jsx";
+import FileSelector from "./Pages/Selector.jsx";
 function App() {
   return(
     <Router>
@@ -18,7 +19,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/profile" element={<StudentForm/>}/>
                     <Route path="/direct" element={<LearningPage/>}/>
-                    <Route path="*" element={<h1>Not Found</h1>} />
+                    <Route path="/selector" element={<FileSelector/>}/>
                 </Routes>
             </div>
         </Router>
