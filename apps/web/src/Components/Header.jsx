@@ -12,9 +12,9 @@ const Nav = styled.nav`
     justify-content: space-between;
     padding: 1rem 2rem;
     align-items: center;
-    background-color: #030712;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(2px);
-    // position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
