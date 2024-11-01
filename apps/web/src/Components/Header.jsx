@@ -14,7 +14,7 @@ const Nav = styled.nav`
     align-items: center;
     background-color: transaprent;
     backdrop-filter: blur(2px);
-    position: fixed;
+    // position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -75,7 +75,7 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     }, []);
   return (
     (innerWidth<768)?
-    <div className='z-50'>
+    <div className='z-50 relative'>
     <Sidebar>
         <SidebarItem
                 goToPage=""
