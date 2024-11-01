@@ -4,7 +4,7 @@ import "./index.css";
 import MainContent from "./Pages/MainContent.jsx";
 import Header from "./Components/Header";
 import Portal from "./Pages/Portal.jsx";
-
+import Dashboard from "./Pages/Dashboard.jsx";
 function App() {
   return(
     <Router>
@@ -13,6 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainContent />} />
                     <Route path="/auth" element={<Portal />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<h1>Not Found</h1>} />
                 </Routes>
             </div>
