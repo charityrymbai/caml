@@ -29,7 +29,7 @@ function Dashboard() {
                   return res.json();
              })
              .then((data) => {
-                console.log(data);
+                console.log(data.details);
                   setUserDetails(data.details);
                   setLoading(false);
              });

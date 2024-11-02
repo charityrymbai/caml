@@ -32,7 +32,7 @@ model Uploads {
   createdAt         DateTime         @default(now())
   user_id           Int
   user              User             @relation(fields: [user_id], references: [user_id])
-  HashTagsOnUploads HashTagsOnUploads[]
+  HashTags_upload          HashTags_uploads[]
 }
 
 model Project {
@@ -43,30 +43,20 @@ model Project {
   createdAt         DateTime          @default(now())
   user_id           Int
   user              User              @relation(fields: [user_id], references: [user_id])
-  HashTagsOnProjects HashTagsOnProjects[]
+  HashTags          HashTags_projects[]
 }
 
-model HashTags {
+model HashTags_uploads {
   hash_tag_id       Int               @id @default(autoincrement())
   hash_tag          String
-  HashTagsOnUploads HashTagsOnUploads[]
-  HashTagsOnProjects HashTagsOnProjects[]
+  upload_id         Int
+  upload            Uploads           @relation(fields: [upload_id], references: [upload_id])
 }
 
-model HashTagsOnUploads {
-  upload_id   Int
-  hash_tag_id Int
-  uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
-  hash_tags   HashTags @relation(fields: [hash_tag_id], references: [hash_tag_id])
-  
-  @@id([hash_tag_id, upload_id])
-}
 
-model HashTagsOnProjects {
-  project_id   Int
-  hash_tag_id  Int
-  projects     Project @relation(fields: [project_id], references: [project_id])
-  hash_tags    HashTags @relation(fields: [hash_tag_id], references: [hash_tag_id])
-
-  @@id([hash_tag_id, project_id])
+model HashTags_projects {
+  hash_tag_id       Int               @id @default(autoincrement())
+  hash_tag          String
+  project_id         Int
+  project            Project           @relation(fields: [project_id], references: [project_id])
 }

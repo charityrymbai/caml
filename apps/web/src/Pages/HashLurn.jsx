@@ -1,6 +1,6 @@
 // Welcome.js
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TypewriterPage from "../Components/TypeWrite";
 import Carousel from "../Components/Carousel";
@@ -40,12 +40,13 @@ const SpinnerWrapper = styled.div`
 `;
 
 const HashLurn = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
     const [option, setOption] = useState("flashcard");
     const [loading, setLoading] = useState(false);
     const [regenerate, setRegenerate] = useState(false);
+    const search = location.state?.search;
 
     // useEffect(() => {
     //     if (!localStorage.getItem("token")) {
@@ -57,7 +58,7 @@ const HashLurn = () => {
         setLoading(true);
         try {
             const res = await fetch(
-                `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/ai/${option}`,
+                `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/ai/quiz`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -71,7 +72,7 @@ const HashLurn = () => {
             if (result.message === "Server Error") {
                 setRegenerate(true);
             } else {
-                navigate(`/${option}`, { state: { data: result } });
+                navigate(`quiz`, { state: { data: result } });
             }
         } catch (error) {
             console.error("Error fetching data:", error);
