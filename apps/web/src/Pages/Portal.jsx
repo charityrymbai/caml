@@ -166,7 +166,7 @@ const SignUp = () => {
     };
     return (
         <div class="flex justify-center items-center min-h-screen h-fit bg-black text-white font-mono">
-  <FormWrapper>
+  <FormWrapper className="mt-20 py-6 px-16 mb-5">
                 <div className="bg-white text-black rounded-full w-20 h-20 mx-auto mb-8 flex items-center justify-center font-bold text-xl">
                 <img src={logo} alt="image" className="rounded-full" />
                 </div>
