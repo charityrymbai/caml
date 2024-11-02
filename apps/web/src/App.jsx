@@ -17,6 +17,7 @@ import AboutUs from "./Pages/AboutUs.jsx";
 import HashLurn from "./Pages/HashLurn.jsx";
 import Filter from "./Pages/Filter.jsx";
 import FileInfo from "./Pages/FileInfo.jsx";
+import OurVision from "./Pages/OurVision.jsx";
 function App() {
   return(
     <Router>
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/compare" element={<Compare />} />
                     <Route path="/filter" element={<Filter/>}/>
                     <Route path="/fileinfo" element={<FileInfo/>}/>
+                    <Route path="/vision" element={<OurVision/>}/>
                 </Routes>
             </div>
         </Router>
