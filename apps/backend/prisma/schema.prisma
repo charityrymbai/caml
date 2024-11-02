@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,41 +8,61 @@ datasource db {
 }
 
 model User {
-  user_id       Int   @id @default(autoincrement())
-  email     String   @unique
-  name      String
-  password  String  @default("")
-  college   String  @default("")
-  branch    String  @default("")
-  major     String  @default("")
-  createdAt DateTime @default(now())
-  Uploads   Uploads[]
+  user_id    Int       @id @default(autoincrement())
+  email      String    @unique
+  name       String
+  password   String    @default("")
+  college    String    @default("")
+  semester   String    @default("")
+  branch     String    @default("")
+  major      String    @default("")
+  createdAt  DateTime  @default(now())
+  Uploads    Uploads[]
+  Project    Project[]
 }
 
 model Uploads {
-  upload_id Int   @id @default(autoincrement())
-  name      String
-  url       String
-  createdAt DateTime @default(now())
-  user_id   Int
-  user      User @relation(fields: [user_id], references: [user_id])
-  HashTags  HashTags[]
+  upload_id         Int              @id @default(autoincrement())
+  name              String
+  url               String
+  createdAt         DateTime         @default(now())
+  user_id           Int
+  user              User             @relation(fields: [user_id], references: [user_id])
   HashTagsOnUploads HashTagsOnUploads[]
+}
+
+model Project {
+  project_id        Int               @id @default(autoincrement())
+  name              String
+  description       String
+  url               String
+  createdAt         DateTime          @default(now())
+  user_id           Int
+  user              User              @relation(fields: [user_id], references: [user_id])
+  HashTagsOnProjects HashTagsOnProjects[]
 }
 
 model HashTags {
-  hash_tag_id Int @id @default(autoincrement())
-  hash_tag    String
-  upload_id   Int 
-  Uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
+  hash_tag_id       Int               @id @default(autoincrement())
+  hash_tag          String
   HashTagsOnUploads HashTagsOnUploads[]
+  HashTagsOnProjects HashTagsOnProjects[]
 }
 
 model HashTagsOnUploads {
-  uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
   upload_id   Int
-  hash_tags    HashTags@relation(fields: [hash_tag_id], references: [hash_tag_id])
-  hash_tag_id   Int
+  hash_tag_id Int
+  uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
+  hash_tags   HashTags @relation(fields: [hash_tag_id], references: [hash_tag_id])
+  
   @@id([hash_tag_id, upload_id])
 }
 
+model HashTagsOnProjects {
+  project_id   Int
+  hash_tag_id  Int
+  projects     Project @relation(fields: [project_id], references: [project_id])
+  hash_tags    HashTags @relation(fields: [hash_tag_id], references: [hash_tag_id])
+
+  @@id([hash_tag_id, project_id])
+}

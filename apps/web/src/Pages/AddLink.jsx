@@ -16,17 +16,30 @@ function GetLink() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    console.log("Form Data Submitted:", formData);
+    fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/addlink`,
+      {
+          method: "POST",
+          body: JSON.stringify({
+              projectName: formData.projectName,
+              githubLink: formData.githubLink,
+              description: formData.description,
+              keywords: formData.keywords,
+          }),
+      },
+  ).then((res) => {
+      return res.json();
+  }).then((data) => {
+      console.log(data);
+  });
   };
 
   return (
     <div className="wrapper">
       <div className="min-h-screen flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit}
+      <div
         className="w-full max-w-lg p-8 bg-white shadow-md rounded-lg mt-20 mb-5"
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Submit Your Project</h2>
@@ -99,12 +112,13 @@ function GetLink() {
         </div>
 
         <button
+          onClick={handleSubmit}
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
         >
           Submit Project
         </button>
-      </form>
+      </div>
     </div>
     </div>
   );
