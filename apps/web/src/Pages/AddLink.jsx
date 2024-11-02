@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GetLink() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     projectName: "",
     githubLink: "",
@@ -22,6 +24,10 @@ function GetLink() {
       `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/addlink`,
       {
           method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           body: JSON.stringify({
               projectName: formData.projectName,
               githubLink: formData.githubLink,
@@ -32,7 +38,7 @@ function GetLink() {
   ).then((res) => {
       return res.json();
   }).then((data) => {
-      console.log(data);
+      navigate("/dashboard");
   });
   };
 
