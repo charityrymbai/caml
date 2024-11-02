@@ -14,9 +14,41 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  user_id       Int   @id @default(autoincrement())
   email     String   @unique
   name      String
   password  String  @default("")
+  college   String  @default("")
+  branch    String  @default("")
+  major     String  @default("")
   createdAt DateTime @default(now())
+  Uploads   Uploads[]
 }
+
+model Uploads {
+  upload_id Int   @id @default(autoincrement())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  user_id   Int
+  user      User @relation(fields: [user_id], references: [user_id])
+  HashTags  HashTags[]
+  HashTagsOnUploads HashTagsOnUploads[]
+}
+
+model HashTags {
+  hash_tag_id Int @id @default(autoincrement())
+  hash_tag    String
+  upload_id   Int 
+  Uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
+  HashTagsOnUploads HashTagsOnUploads[]
+}
+
+model HashTagsOnUploads {
+  uploads     Uploads @relation(fields: [upload_id], references: [upload_id])
+  upload_id   Int
+  hash_tags    HashTags@relation(fields: [hash_tag_id], references: [hash_tag_id])
+  hash_tag_id   Int
+  @@id([hash_tag_id, upload_id])
+}
+

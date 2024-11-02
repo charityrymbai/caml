@@ -45,6 +45,7 @@ authRoutes.post("/signup", async (c) => {
 
         const token = await sign(
             {
+                user_id: res.user_id,
                 name: body.name,
                 email: body.email,
             },
@@ -113,8 +114,12 @@ authRoutes.post("/signin", async (c) => {
         const secret = c.env.JWT_SECRET;
 
         const token = await sign(
-            {
-                email: body.email,
+            {   
+                user_id: existingUser.user_id,
+                name: existingUser.name,
+                college: existingUser.college,
+                branch: existingUser.branch,
+                email: existingUser.email,
             },
             secret,
         );
