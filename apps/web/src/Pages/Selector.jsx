@@ -31,7 +31,7 @@ const FileSelector = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-[#020617]">
+    <div className="flex flex-col items-center min-h-screen bg-[#020617] mt-20">
       <div 
         className="flex text-center flex-col items-center justify-center bg-gray-200 h-fit w-fit p-3 rounded-xl  border-2 border-dashed border-black m-4"
         onDragOver={handleDragOver}
@@ -48,7 +48,7 @@ const FileSelector = () => {
       </button>
       </div>
       
-      <div className="flex text-center items-center justify-center p-10 rounded-xl bg-gray-200 h-fit w-fit flex-col ">
+      <div className="flex text-center items-center justify-center p-10  rounded-xl bg-gray-200 h-fit w-fit flex-col ">
         {/* Content 2: Display all selected files */}
         <h3 className="text-black mb-2">Selected Files:</h3>
         <ul className="text-black">
