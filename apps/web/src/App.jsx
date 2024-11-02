@@ -11,6 +11,7 @@ import FileSelector from "./Pages/AddFile.jsx";
 import LinkSelector from "./Pages/AddLink.jsx";
 import Lurn from "./Pages/Welcome.jsx";
 import Filter from "./Pages/Filter.jsx";
+import FileInfo from "./Pages/FileInfo.jsx";
 function App() {
   return(
     <Router>
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/addProject" element={<LinkSelector/>}/>
                     <Route path="/lurn" element={<Lurn/>}/>
                     <Route path="/filter" element={<Filter/>}/>
+                    <Route path="/fileInfo" element={<FileInfo/>}/>
                 </Routes>
             </div>
         </Router>
