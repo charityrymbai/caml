@@ -98,6 +98,11 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
                 icon={<MailCheck size={20} />}
                 text="Contact"
         ></SidebarItem>
+        <SidebarItem
+                goToPage="dashboard"
+                icon={<MailCheck size={20} />}
+                text="Contact"
+        ></SidebarItem>
                
     </Sidebar>
     </div>
@@ -106,6 +111,7 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
       <a href="/"><img to="/auth" src={logo} alt="logo" className="bg-white rounded-full w-10 h-10" /></a> 
       <NavLinks>
         <a href="/" className='text-vsgreen  hover:text-vsred'>Home</a>
+        <a href="/dashboard" className='text-[#ec87d3] hover:text-vsred'>Dashboard</a>
         <a href="/vision" className='text-vscyan hover:text-vsred'>Our Vision</a>
         <a href="/about_us" className='text-vspurple hover:text-vsred'>About Us</a>
         <a href="/contact" className='text-vsyellow hover:text-vsred'>Contact</a>
