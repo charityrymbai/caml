@@ -9,12 +9,7 @@ const SearchBar = ({setSearch, submitHandler}) => {
     const [isFocused, setIsFocused] = useState(false);
     return (
         <div className="flex items-center space-x-4 w-fit shadow-lg shadow-black bg-[#182139] p-2 border-solid border-[#353c51] border-[0.5px] rounded-[25px] transition-all duration-300 ease-in-out">
-          {/* Icon */}
-          {/* <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-full p-1">
-            <span className="w-5 h-5 block"></span>
-          </div> */}
           
-          {/* Search Input */}
           <input
             type="text"
             placeholder="Message LURN"
@@ -27,7 +22,7 @@ const SearchBar = ({setSearch, submitHandler}) => {
             onKeyDown={handleKeyDown}
           />
           
-          {/* Microphone Icon */}
+          
           <button className="z-5 flex justify-center items-center bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 p-2 rounded-full ml-2"
                 onClick={submitHandler}
             >
