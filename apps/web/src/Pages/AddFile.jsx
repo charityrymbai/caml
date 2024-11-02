@@ -35,7 +35,7 @@ const FileSelector = () => {
   };
 
   return (
-    <div className="bg-black">
+    <div className="wrapper">
       <div className="flex flex-col items-center h-screen w-full pt-20">
         <div
           className="flex text-center flex-col items-center justify-center bg-gray-200 h-1/2 w-1/2 py-3 px-10 rounded-xl  border-2 border-dashed border-black m-4"
