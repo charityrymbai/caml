@@ -69,7 +69,7 @@ function Dashboard() {
                     </button>   
                 </div>
                 <div className="text-4xl font-anton mt-10">OR</div>
-                <div className="text-3xl font-merienda mt-10 mb-10 font-bold">Start your Learing Journey Below</div>
+                <div className="text-3xl font-merienda mt-10 mb-10 font-bold">Start your Learning Journey Below</div>
                 <LinkButton toPath="optpage" text="Start Exploring" />
             </div>
         </div>
