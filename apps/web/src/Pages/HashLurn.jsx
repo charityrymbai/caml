@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TypewriterPage from "../Components/TypeWrite";
-import SearchBar from "../Components/SearchBar";
 import Carousel from "../Components/Carousel";
 
 const SpinnerWrapper = styled.div`
@@ -39,7 +38,7 @@ const SpinnerWrapper = styled.div`
     }
 `;
 
-const Lurn = () => {
+const HashLurn = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("");
@@ -47,11 +46,11 @@ const Lurn = () => {
     const [loading, setLoading] = useState(false);
     const [regenerate, setRegenerate] = useState(false);
 
-    useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            navigate("/auth");
-        }
-    }, [navigate]);
+    // useEffect(() => {
+    //     if (!localStorage.getItem("token")) {
+    //         navigate("/auth");
+    //     }
+    // }, [navigate]);
 
     const submitHandler = async () => {
         setLoading(true);
@@ -86,15 +85,11 @@ const Lurn = () => {
     };
 
     return (
-        <div className="wrapper z-0 overflow-hidden relative h-screen w-full text-center">
+        <div className="wrapper flex-col flex z-0 overflow-hidden relative h-screen w-full text-center">
             <div className="p-2 pt-20 pb-10">
-                <TypewriterPage text={"Welcome to Learning Page"} />
+                <TypewriterPage text={"Select the Learning Method"} />
             </div>
             <div className="flex flex-col items-center">
-                <SearchBar
-                    setSearch={setSearch}
-                    submitHandler={submitHandler}
-                />
                 {loading ? (
                     <SpinnerWrapper className="pt-5">
                         <div className="loader"></div>
@@ -109,8 +104,11 @@ const Lurn = () => {
                 ) : null}
             </div>
             <Carousel setOption={setOption} />
+            <div className="text-white ">
+                Generate
+            </div>
         </div>
     );
 };
 
-export default Lurn;
+export default HashLurn;

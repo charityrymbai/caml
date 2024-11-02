@@ -9,7 +9,8 @@ import StudentForm from "./Pages/Profile.jsx"
 import OptPage  from "./Pages/OptPage.jsx";
 import FileSelector from "./Pages/AddFile.jsx";
 import GetLink from "./Pages/AddLink.jsx";
-import Lurn from "./Pages/Welcome.jsx";
+import Lurn from "./Pages/Lurn.jsx";
+import HashLurn from "./Pages/HashLurn.jsx";
 import Filter from "./Pages/Filter.jsx";
 import FileInfo from "./Pages/FileInfo.jsx";
 function App() {
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/addFile" element={<FileSelector/>}/>
                     <Route path="/addlink" element={<GetLink/>}/>
                     <Route path="/lurn" element={<Lurn/>}/>
+                    <Route path="/hashlurn" element={<HashLurn/>}/>
                     <Route path="/filter" element={<Filter/>}/>
                     <Route path="/fileInfo" element={<FileInfo/>}/>
                 </Routes>
