@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function FileInfo() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const data = location.state?.data;
+
   const [formData, setFormData] = useState({
-    type: "",          
+    type: "",  
+    name: "",        
     subject: "",
     description: "",
     keywords: "",
   });
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,17 +23,32 @@ function FileInfo() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const buttonHandler = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+    const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/addpdf`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        type: formData.type,
+        name: formData.name,
+        subject: formData.subject,
+        description: formData.description,
+        keywords: formData.keywords,
+        url: data.url,
+      }),
+    })
+    const resData = await res.json();
+    navigate("/dashboard");
   };
 
   return (
     <div className="wrapper">
       <div className="min-h-screen flex items-center justify-center pt-20 mb-5 ">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg p-8 backdrop-blur shadow-md rounded-lg shadow-md shadow-white"
+      <div
+        className="w-full max-w-lg p-8 backdrop-blur rounded-lg shadow-md shadow-white"
       >
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-200">Add PDF Details</h2>
 
@@ -49,6 +71,24 @@ function FileInfo() {
             <option value="notes">Notes</option>
             <option value="pyqs">PYQs</option>
           </select>
+        </div>
+
+
+        
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-gray-500 font-semibold mb-2">
+            Name 
+          </label>
+          <input
+            type="text"
+            id="names"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            rows="4"
+            placeholder="Name of PDF"
+          ></input>
         </div>
 
 
@@ -105,11 +145,12 @@ function FileInfo() {
 
         <button
           type="submit"
+          onClick={buttonHandler}
           className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
         >
           Submit PDF
         </button>
-      </form>
+      </div>
     </div>
     </div>
   );

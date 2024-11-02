@@ -23,7 +23,11 @@ model User {
 
 model Uploads {
   upload_id         Int              @id @default(autoincrement())
-  name              String
+  type              String            @default("")
+  name             String            @default("")
+  subject           String?           @default("")
+  description       String?          @default("")
+  keywords          String?          @default("")
   url               String
   createdAt         DateTime         @default(now())
   user_id           Int

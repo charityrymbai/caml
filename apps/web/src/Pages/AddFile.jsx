@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import sel from "../../assets/Images/sel.svg";
 import uploadLogo from "../../assets/Images/upload.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const FileSelector = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -33,6 +35,38 @@ const FileSelector = () => {
       droppedFiles.map((file) => file.name)
     );
   };
+
+  const handleUpload = async() => {
+      console.log("uploading")
+      if (files.length === 0) {
+        alert('Please select a PDF file to upload');
+        return;
+      }
+
+      const file = files[0];
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      setUploading(true);
+      setError(null);
+
+    try {
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/upload/file`, {
+            method: 'POST',
+            body: formData,
+        });
+
+      const data = await res.json();
+      console.log(data);
+      navigate("/fileinfo", {state: {data: data}});
+  } catch (err) {
+      setError(err.message);
+  } finally {
+      setUploading(false);
+  }
+    
+  }
 
   return (
     <div className="wrapper">
@@ -69,7 +103,7 @@ const FileSelector = () => {
           onChange={handleFileChange}
           className="hidden"
         />
-        <button onClick={()=>navigate("/fileInfo")} 
+        <button onClick={handleUpload} 
           className="mt-10 relative inline-flex items-center justify-center 
       bg-gradient-to-br from-pink-500 to-orange-400 text-white font-bold uppercase 
       text-sm md:text-base tracking-wide py-2 px-5 rounded-lg transition-all duration-200 ease-out 
@@ -77,6 +111,14 @@ const FileSelector = () => {
         >
           Continue
         </button>
+        <div>{()=>{
+          if (error){
+          setError("Please select a file to upload");
+          setTimeout(()=>{
+            setError(null);
+          },5000);
+          }
+        }}</div>
       </div>
     </div>
   );

@@ -139,6 +139,52 @@ dataRouter.post("/addProfile", authMiddleware, async (c) => {
     }
 });
 
+dataRouter.post("/addpdf", authMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+   }).$extends(withAccelerate());
+
+   const body = await c.req.json();
+
+    try {
+        const pdfDetails = await prisma.uploads.create({
+            data: {
+                user_id: c.user.user_id,
+                name: body.name,
+                type: body.type,
+                subject: body.subject,
+                description: body.description,
+                url: body.url,
+            }
+        });
+
+        const keywords = body.keywords.split(",");  
+
+        // const hashtags = await prisma.hashTags.createMany({
+        //     data: keywords.map((keyword) => ({
+        //         hash_tag: keyword.trim(),
+        //         project_id: 0,
+        //         upload_id: pdfDetails.upload_id, 
+        //     })),
+        //     skipDuplicates: true,
+        // });
+
+        return c.json({
+            message: "PDF Details Added",
+        });
+    } catch (error) {
+            console.error(error);
+            return c.json(
+                {
+                    message: `${error}`,
+                },
+                500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
 
 
 export default dataRouter;
