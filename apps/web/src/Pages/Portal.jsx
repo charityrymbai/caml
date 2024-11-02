@@ -84,7 +84,7 @@ const SignIn = ({setLogin}) => {
         if (!data.token) {
             showError(data.message);
         } else {
-            navigate("../welcome");
+            navigate("/profile");
             localStorage.setItem("token", data.token);
         }
     };
@@ -160,7 +160,7 @@ const SignUp = () => {
         if (!data.token) {
             showError(data.message);
         } else {
-            navigate("../welcome");
+            navigate("/profile");
             localStorage.setItem("token", data.token);
         }
     };
@@ -212,7 +212,7 @@ const Portal = () => {
     const navigate = useNavigate();
     useEffect(()=>{
         if(localStorage.getItem("token") !== null){
-            navigate("/welcome");
+            navigate("/profile");
         }
     },[])
     
