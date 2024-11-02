@@ -59,11 +59,11 @@ const Filter = () => {
 
   return (
     <div className="wrapper">
-      <div className="min-h-screen flex flex-col items-center py-10 pt-20">
+      <div className="min-h-screen w-screen flex flex-col p-4 items-center pt-20">
         <div className="text-white text">
           <TypewriterPage text={"Fill up to get Started..."} />
         </div>
-        <div className="flex flex-wrap items-center w-full max-w-4xl p-4 shadow-md rounded-lg mb-8 gap-4">
+        <div className="flex flex-wrap  items-center w-full max-w-4xl p-4 shadow-md rounded-lg mb-8 gap-4">
           <input
             type="text"
             name="instituteName"
@@ -115,18 +115,18 @@ const Filter = () => {
           Search results -
         </div>
 
-        <div className="flex flex-col flex-wrap w-full h-fit items-center justify-center">
+        <div className="flex flex-col flex-wrap p-4 w-full h-fit items-center justify-center">
           {results.map((item) =>
             item.Uploads && item.Uploads.length > 0 ? (
               item.Uploads.map((upload) => (
                 <div
                   key={upload.upload_id}
-                  className="flex items-center p-4 bg-white border w-1/2 rounded-lg shadow-md shadow-gray-800 m-2"
+                  className="flex-wrap flex items-center p-4 bg-white border w-4/5 md:w-1/2 rounded-lg shadow-md shadow-gray-800 m-2"
                 >
-                  <h3 className="text-lg font-semibold w-40 overflow-hidden">
+                  <h3 className="text-lg text-green-700 font-semibold w-fit px-2 overflow-hidden">
                     {upload.name}
                   </h3>
-                  <h3 className="text-lg font-semibold w-40 overflow-hidden">
+                  <h3 className="text-lg text-blue-900 font font-semibold w-fit underline overflow-hidden">
                     <a href={upload.url}>{upload.url}</a>
                   </h3>
 
@@ -139,7 +139,7 @@ const Filter = () => {
                             state: { data: tag.hash_tag },
                           });
                         }}
-                        className="bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-full m-1"
+                        className="bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-lg m-1"
                       >
                         {tag.hash_tag}
                       </button>
