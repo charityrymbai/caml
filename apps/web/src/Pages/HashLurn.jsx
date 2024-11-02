@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TypewriterPage from "../Components/TypeWrite";
 import Carousel from "../Components/Carousel";
+import LinkButton from "../Components/LinkButton";
 
 const SpinnerWrapper = styled.div`
     .loader {
@@ -104,9 +105,10 @@ const HashLurn = () => {
                 ) : null}
             </div>
             <Carousel setOption={setOption} />
-            <div className="text-white ">
-                Generate
+            <div className="-z-10 pt-80">
+                <LinkButton toPath="" text="Generate" />
             </div>
+            
         </div>
     );
 };

@@ -7,16 +7,23 @@ import SearchBar from "../Components/SearchBar";
 import Carousel from "../Components/Carousel";
 
 const SpinnerWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Ensures spinner occupies space */
+
     .loader {
         width: 50px;
-        aspect-ratio: 1;
+        height: 50px;
         display: grid;
+        aspect-ratio: 1;
     }
+
     .loader::before,
     .loader::after {
         content: "";
         grid-area: 1/1;
-        --c: no-repeat radial-gradient(farthest-side, #25b09b 92    %, #0000);
+        --c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
         background:
             var(--c) 50% 0,
             var(--c) 50% 100%,
