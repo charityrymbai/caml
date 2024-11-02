@@ -40,7 +40,7 @@ const Filter = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify(formData),
-        }
+        },
       );
 
       if (!res.ok) {
@@ -111,7 +111,9 @@ const Filter = () => {
 
         {loading && <div className="text-gray-200">Loading...</div>}
         {error && <div className="text-red-500">{error}</div>}
-        <div className="text-gray-200 text-center text-3xl">Search results -</div>
+        <div className="text-gray-200 text-center text-3xl">
+          Search results -
+        </div>
 
         <div className="flex flex-col flex-wrap w-full h-fit items-center justify-center">
           {results.map((item) =>
@@ -133,7 +135,9 @@ const Filter = () => {
                       <button
                         key={tag.hash_tag_id}
                         onClick={() => {
-                          navigate("/hashlurn", { state: { data: tag.hash_tag } });
+                          navigate("/hashlurn", {
+                            state: { data: tag.hash_tag },
+                          });
                         }}
                         className="bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-full m-1"
                       >
@@ -144,7 +148,7 @@ const Filter = () => {
               ))
             ) : (
               <div></div>
-            )
+            ),
           )}
         </div>
       </div>

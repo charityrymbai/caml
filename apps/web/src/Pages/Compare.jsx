@@ -53,7 +53,10 @@ const Compare = () => {
             <h2 className="text-2xl font-bold mb-8">{category}</h2>
             <div className="grid gap-2 justify-items-center">
               {(droppedItems[category] || []).map((item) => (
-                <div key={item.value} className="w-fit px-4 py-2 rounded-xl bg-[#023b0aea] shadow-black shadow-lg">
+                <div
+                  key={item.value}
+                  className="w-fit px-4 py-2 rounded-xl bg-[#023b0aea] shadow-black shadow-lg"
+                >
                   {item.value}
                 </div>
               ))}

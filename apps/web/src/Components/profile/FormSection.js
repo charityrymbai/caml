@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const FormSection = styled.div`
-    padding: 30px;
-    background: #fff;
+  padding: 30px;
+  background: #fff;
 `;
 
 export default FormSection;

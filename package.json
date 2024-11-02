@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "migrate_db": "cd apps/backend && npx prisma migrate dev",
     "generate_db": "cd apps/backend && npx prisma generate",
-    "deploy": "cd apps/backend && wrangler deploy --minify"
+    "deploy": "cd apps/backend && wrangler deploy --minify",
+    "pretty": "prettier --write \"**/*.{js,jsx,md}\""
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

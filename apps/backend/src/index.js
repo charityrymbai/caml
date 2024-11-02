@@ -11,14 +11,12 @@ const app = new Hono();
 app.use("*", cors());
 
 app.get("/health", (c) => {
-    return c.json({ status: "ok" });
+  return c.json({ status: "ok" });
 });
 
 app.route("/api/v1/auth/", authRouter);
 app.route("/api/v1/upload/", uploadRouter);
 app.route("/api/v1/ai/", aiRouter);
-app.route("/api/v1/data/",dataRouter);
+app.route("/api/v1/data/", dataRouter);
 
 export default app;
-
-

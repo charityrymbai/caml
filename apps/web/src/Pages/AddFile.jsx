@@ -18,7 +18,7 @@ const FileSelector = () => {
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     console.log(
       "Selected files:",
-      selectedFiles.map((file) => file.name)
+      selectedFiles.map((file) => file.name),
     );
   };
 
@@ -32,41 +32,43 @@ const FileSelector = () => {
     setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
     console.log(
       "Dropped files:",
-      droppedFiles.map((file) => file.name)
+      droppedFiles.map((file) => file.name),
     );
   };
 
-  const handleUpload = async() => {
-      console.log("uploading")
-      if (files.length === 0) {
-        alert('Please select a PDF file to upload');
-        return;
-      }
+  const handleUpload = async () => {
+    console.log("uploading");
+    if (files.length === 0) {
+      alert("Please select a PDF file to upload");
+      return;
+    }
 
-      const file = files[0];
+    const file = files[0];
 
-      const formData = new FormData();
-      formData.append('file', file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-      setUploading(true);
-      setError(null);
+    setUploading(true);
+    setError(null);
 
     try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/upload/file`, {
-            method: 'POST',
-            body: formData,
-        });
+      const res = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/upload/file`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
 
       const data = await res.json();
       console.log(data);
-      navigate("/fileinfo", {state: {data: data}});
-  } catch (err) {
+      navigate("/fileinfo", { state: { data: data } });
+    } catch (err) {
       setError(err.message);
-  } finally {
+    } finally {
       setUploading(false);
-  }
-    
-  }
+    }
+  };
 
   return (
     <div className="wrapper">
@@ -103,7 +105,8 @@ const FileSelector = () => {
           onChange={handleFileChange}
           className="hidden"
         />
-        <button onClick={handleUpload} 
+        <button
+          onClick={handleUpload}
           className="mt-10 relative inline-flex items-center justify-center 
       bg-gradient-to-br from-pink-500 to-orange-400 text-white font-bold uppercase 
       text-sm md:text-base tracking-wide py-2 px-5 rounded-lg transition-all duration-200 ease-out 
@@ -111,14 +114,16 @@ const FileSelector = () => {
         >
           Continue
         </button>
-        <div>{()=>{
-          if (error){
-          setError("Please select a file to upload");
-          setTimeout(()=>{
-            setError(null);
-          },5000);
-          }
-        }}</div>
+        <div>
+          {() => {
+            if (error) {
+              setError("Please select a file to upload");
+              setTimeout(() => {
+                setError(null);
+              }, 5000);
+            }
+          }}
+        </div>
       </div>
     </div>
   );

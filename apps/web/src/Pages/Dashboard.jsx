@@ -23,7 +23,7 @@ function Dashboard() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     )
       .then((res) => {
         return res.json();

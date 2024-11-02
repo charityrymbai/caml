@@ -1,9 +1,9 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
-const LinkButton = ({ toPath,text }) => {
-    return (
-      <Link
+const LinkButton = ({ toPath, text }) => {
+  return (
+    <Link
       to={`/${toPath}`}
       className=" sm:justify-center
         bg-black text-white border border-black rounded-md w-fit text-xl
@@ -17,7 +17,7 @@ const LinkButton = ({ toPath,text }) => {
     >
       {text}
     </Link>
-    )
-}
+  );
+};
 
-export default LinkButton
+export default LinkButton;
