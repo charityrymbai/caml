@@ -84,6 +84,11 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
                 text="Home"
         ></SidebarItem>
         <SidebarItem
+                goToPage="dashboard"
+                icon={<MailCheck size={20} />}
+                text="Dashboard"
+        ></SidebarItem>
+        <SidebarItem
                 goToPage="vision"
                 icon={<EyeClosed size={20} />}
                 text="vision"
@@ -98,11 +103,7 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
                 icon={<MailCheck size={20} />}
                 text="Contact"
         ></SidebarItem>
-        <SidebarItem
-                goToPage="dashboard"
-                icon={<MailCheck size={20} />}
-                text="Contact"
-        ></SidebarItem>
+        
                
     </Sidebar>
     </div>
