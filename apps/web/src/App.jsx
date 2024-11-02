@@ -8,6 +8,8 @@ import Dashboard from "./Pages/Dashboard.jsx";
 import StudentForm from "./Pages/Profile.jsx"
 import OptPage  from "./Pages/OptPage.jsx";
 import FileSelector from "./Pages/Selector.jsx";
+import Lurn from "./Pages/Welcome.jsx";
+import Filter from "./Pages/Filter.jsx";
 function App() {
   return(
     <Router>
@@ -20,6 +22,8 @@ function App() {
                     <Route path="/profile" element={<StudentForm/>}/>
                     <Route path="/optpage" element={<OptPage/>}/>
                     <Route path="/selector" element={<FileSelector/>}/>
+                    <Route path="/lurn" element={<Lurn/>}/>
+                    <Route path="/filter" element={<Filter/>}/>
                 </Routes>
             </div>
         </Router>
