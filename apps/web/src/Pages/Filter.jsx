@@ -3,7 +3,7 @@ import TypewriterPage from "../Components/TypeWrite";
 import { useNavigate } from "react-router-dom";
 
 const Filter = () => {
-  const [results, setResults] = useState([{ name: "CS-203", url: "https://ik.imagekit.io/0j12on6az/uploads/charity_t1pb0ImOvS" }]);
+  const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     instituteName: "",
@@ -13,9 +13,10 @@ const Filter = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const hashtags = [{ name: "DLD" }, { name: "BCD" }, { name: "LOGIC GATES" }];
+  const [searchButtonVisibility, setSearchButtonVisibility] = useState(true);
 
   const handleChange = (e) => {
+    setSearchButtonVisibility(false);
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -27,24 +28,26 @@ const Filter = () => {
     e.preventDefault();
     console.log("clicked");
     setLoading(true);
-    setError(null); // Reset error state
+    setError(null);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/getAllUrls`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/search`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to fetch results");
       }
 
       const data = await res.json();
-      setResults(data.results);
-
+      setResults(data);
     } catch (error) {
       console.error(error);
       setError("An error occurred while fetching results.");
@@ -52,7 +55,6 @@ const Filter = () => {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="wrapper">
@@ -99,47 +101,50 @@ const Filter = () => {
 
           <button
             onClick={handleClick}
+            disabled={searchButtonVisibility}
             className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200"
           >
             Search
           </button>
         </div>
+
         {loading && <div className="text-gray-200">Loading...</div>}
         {error && <div className="text-red-500">{error}</div>}
-        <div className="text-gray-200 text-center text-3xl">
-          Search results -
-        </div>
+        <div className="text-gray-200 text-center text-3xl">Search results -</div>
+
         <div className="flex flex-col flex-wrap w-full h-fit items-center justify-center">
-          {
-            results.map((item) => (
-              <div
-                key={item.upload_id}
-                className="flex items-center p-4 bg-white border w-1/2 rounded-lg shadow-md shadow-gray-800 m-2"
-              >
-                {/* <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  className="w-32 aspect-1 object-cover rounded-lg px-4 overflow-hidden"
-                /> */}
-                <h3 className="text-lg font-semibold w-40 overflow-hidden">
-                  {item.name}
-                </h3>
-                <h3 className="text-lg font-semibold w-40 overflow-hidden">
-                  {item.url}
-                </h3>
-                {hashtags.map((tag) => (
-                  <button
-                    onClick={()=>{
-                      navigate("/hashlurn", { state: { data: tag.name } });
-                    }}
-                    className="bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-full m-1"
-                  >
-                    {tag.name}
-                  </button>
-                ))}
-              </div>
-            ))
-          }
+          {results.map((item) =>
+            item.Uploads && item.Uploads.length > 0 ? (
+              item.Uploads.map((upload) => (
+                <div
+                  key={upload.upload_id}
+                  className="flex items-center p-4 bg-white border w-1/2 rounded-lg shadow-md shadow-gray-800 m-2"
+                >
+                  <h3 className="text-lg font-semibold w-40 overflow-hidden">
+                    {upload.name}
+                  </h3>
+                  <h3 className="text-lg font-semibold w-40 overflow-hidden">
+                    <a href={upload.url}>{upload.url}</a>
+                  </h3>
+
+                  {upload.HashTags_upload &&
+                    upload.HashTags_upload.map((tag) => (
+                      <button
+                        key={tag.hash_tag_id}
+                        onClick={() => {
+                          navigate("/hashlurn", { state: { data: tag.hash_tag } });
+                        }}
+                        className="bg-gray-200 text-gray-800 text-sm px-2 py-1 rounded-full m-1"
+                      >
+                        {tag.hash_tag}
+                      </button>
+                    ))}
+                </div>
+              ))
+            ) : (
+              <div></div>
+            )
+          )}
         </div>
       </div>
     </div>

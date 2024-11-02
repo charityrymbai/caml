@@ -4,18 +4,26 @@ import styled from "styled-components";
 import TypewriterPage from "../Components/TypeWrite";
 import Carousel from "../Components/Carousel";
 import LinkButton from "../Components/LinkButton";
+import Button from "../Components/profile/Button";
 
 const SpinnerWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Ensures spinner occupies space */
+
     .loader {
         width: 50px;
-        aspect-ratio: 1;
+        height: 50px;
         display: grid;
+        aspect-ratio: 1;
     }
+
     .loader::before,
     .loader::after {
         content: "";
         grid-area: 1/1;
-        --c: no-repeat radial-gradient(farthest-side, #25b09b 92    %, #0000);
+        --c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
         background:
             var(--c) 50% 0,
             var(--c) 50% 100%,
@@ -45,7 +53,8 @@ const HashLurn = () => {
     const [option, setOption] = useState("flashcard");
     const [loading, setLoading] = useState(false);
     const [regenerate, setRegenerate] = useState(false);
-    const search = location.state?.search;
+    const search = location.state?.data;
+    console.log(option);
 
     // useEffect(() => {
     //     if (!localStorage.getItem("token")) {
@@ -57,7 +66,7 @@ const HashLurn = () => {
         setLoading(true);
         try {
             const res = await fetch(
-                `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/ai/quiz`,
+                `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/ai/${option}`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -71,7 +80,7 @@ const HashLurn = () => {
             if (result.message === "Server Error") {
                 setRegenerate(true);
             } else {
-                navigate(`quiz`, { state: { data: result } });
+                navigate(`/${option}`, { state: { data: result } });
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -91,6 +100,7 @@ const HashLurn = () => {
                 <TypewriterPage text={"Select the Learning Method"} />
             </div>
             <div className="flex flex-col items-center">
+            <button className="text-white text-3xl bg-green-500 rounded-lg p-2" onClick={submitHandler}>Generate</button>
                 {loading ? (
                     <SpinnerWrapper className="pt-5">
                         <div className="loader"></div>
@@ -105,9 +115,6 @@ const HashLurn = () => {
                 ) : null}
             </div>
             <Carousel setOption={setOption} />
-            <div className="-z-10 pt-80">
-                <LinkButton toPath="" text="Generate" />
-            </div>
             
         </div>
     );

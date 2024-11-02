@@ -184,31 +184,25 @@ dataRouter.post("/addpdf", authMiddleware, async (c) => {
     }
 });
 
-dataRouter.post("/search", authMiddleware, async (c) => {
+dataRouter.get("/search", async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
    }).$extends(withAccelerate());
 
-    const body = await c.req.json();
-
     try {
-        const res = await prisma.user.findMany({
-            where: {
-                college: body.college,
-                branch: body.major,
-                major: body.semester,
-            },
+        const users = await prisma.user.findMany({
             include: {
-              Uploads: {
-                select: {
-                  url: true,
-                  name: true,
-                },
-              },
-            },
-          });
+                Uploads: {
+                    include: {
+                        HashTags_upload: true
+                    }
+                }
+            }
+        });
 
-        return c.json(res);
+        console.log(JSON.stringify(users, null, 2));
+        return c.json(users);
+
     } catch (error) {
             console.error(error);
             return c.json(
