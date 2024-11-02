@@ -44,12 +44,13 @@ dataRouter.get("/getDashboardDetails", authMiddleware, async (c) => {
     }
 });
 
-dataRouter.get("/addlink", authMiddleware, async (c) => {
+dataRouter.post("/addlink", authMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
    }).$extends(withAccelerate());
 
    const body = await c.req.json();
+   console.log(body);
 
     try {
         const projectDetails = await prisma.project.create({
@@ -61,15 +62,12 @@ dataRouter.get("/addlink", authMiddleware, async (c) => {
             }
         });
 
-        console.log(projectDetails);
-
         const keywords = body.keywords.split(",");  
 
-        const hashtags = await prisma.hashTags.createMany({
+        const hashtags = await prisma.hashTags_projects.createMany({
             data: keywords.map((keyword) => ({
                 hash_tag: keyword.trim(),
                 project_id: projectDetails.project_id,
-                upload_id: 0, 
             })),
             skipDuplicates: true,
         });
@@ -77,12 +75,7 @@ dataRouter.get("/addlink", authMiddleware, async (c) => {
 
 
         return c.json({
-            details: {
-                name: userDetails.name,
-                college: userDetails.college,
-                branch: userDetails.branch,
-                major: userDetails.major,
-            }
+            message: "Project Details Added",
         });
     } catch (error) {
             console.error(error);
@@ -184,13 +177,35 @@ dataRouter.post("/addpdf", authMiddleware, async (c) => {
     }
 });
 
-dataRouter.get("/search", async (c) => {
+dataRouter.post("/search", async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
    }).$extends(withAccelerate());
 
+   
+
     try {
+        const { instituteName, course, semester, keywords } = await c.req.json();
+
         const users = await prisma.user.findMany({
+            where: {
+                AND: [
+                    { college: { contains: instituteName, mode: "insensitive" } },
+                    { major: { contains: course, mode: "insensitive" } },
+                    { semester: { contains: semester, mode: "insensitive" } },
+                    {
+                        Uploads: {
+                            some: {
+                                OR: keywords
+                                    ? keywords.split(",").map(keyword => ({
+                                        keywords: { contains: keyword.trim(), mode: "insensitive" }
+                                    }))
+                                    : undefined
+                            }
+                        }
+                    }
+                ]
+            },
             include: {
                 Uploads: {
                     include: {
@@ -200,7 +215,6 @@ dataRouter.get("/search", async (c) => {
             }
         });
 
-        console.log(JSON.stringify(users, null, 2));
         return c.json(users);
 
     } catch (error) {

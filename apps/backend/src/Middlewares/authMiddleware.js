@@ -10,9 +10,9 @@ const authMiddleware = async (c, next) => {
           c.user = verifiedToken;
           console.log(verifiedToken);
           await next();
-     } catch {
+     } catch (error){
           return c.json({
-               message: 'not authorised',
+               message: error.message,
           });
      }
 };
