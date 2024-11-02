@@ -98,11 +98,6 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
                 icon={<Users size={20} />}
                 text="About Us"
         ></SidebarItem>
-        <SidebarItem
-                goToPage="Contact"
-                icon={<MailCheck size={20} />}
-                text="Contact"
-        ></SidebarItem>
         
                
     </Sidebar>
@@ -115,7 +110,6 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
         <a href="/dashboard" className='text-[#ec87d3] hover:text-vsred'>Dashboard</a>
         <a href="/vision" className='text-vscyan hover:text-vsred'>Our Vision</a>
         <a href="/about_us" className='text-vspurple hover:text-vsred'>About Us</a>
-        <a href="/contact" className='text-vsyellow hover:text-vsred'>Contact</a>
       </NavLinks>
       <AuthButton />
     </Nav>
