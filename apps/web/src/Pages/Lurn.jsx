@@ -53,11 +53,11 @@ const Lurn = () => {
     const [loading, setLoading] = useState(false);
     const [regenerate, setRegenerate] = useState(false);
 
-    // useEffect(() => {
-    //     if (!localStorage.getItem("token")) {
-    //         navigate("/auth");
-    //     }
-    // }, [navigate]);
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/auth");
+        }
+    }, [navigate]);
 
     const submitHandler = async () => {
         setLoading(true);

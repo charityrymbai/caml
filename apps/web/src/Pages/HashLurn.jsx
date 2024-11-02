@@ -3,8 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TypewriterPage from "../Components/TypeWrite";
 import Carousel from "../Components/Carousel";
-import LinkButton from "../Components/LinkButton";
-import Button from "../Components/profile/Button";
 
 const SpinnerWrapper = styled.div`
     display: flex;
@@ -56,11 +54,11 @@ const HashLurn = () => {
     const search = location.state?.data;
     console.log(option);
 
-    // useEffect(() => {
-    //     if (!localStorage.getItem("token")) {
-    //         navigate("/auth");
-    //     }
-    // }, [navigate]);
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/auth");
+        }
+    }, [navigate]);
 
     const submitHandler = async () => {
         setLoading(true);
