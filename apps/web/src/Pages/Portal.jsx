@@ -88,7 +88,7 @@ const SignIn = ({ setLogin }) => {
     if (!data.token) {
       showError(data.message);
     } else {
-      navigate("/profile");
+      navigate("/dashboard");
       localStorage.setItem("token", data.token);
     }
   };

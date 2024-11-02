@@ -1,81 +1,41 @@
-# Turborepo starter
+# Cognitia 2024 Hackathon Website
 
-This is an official starter Turborepo.
+A project developed for the Cognitia 2024 hackathon. This website serves as a platform for students, providing resources such as student projects, previous year exams, and notes across universities to promote peer learning and innovation.
 
-## Using this example
+## Demo
+[Deployment Link](https://caml.vercel.app/) 
 
-Run the following command:
+## Features
+- **User Authentication** - Secure login and registration system for users.
+- **Dashboard** - User-specific dashboard for managing uploaded projects and resources.
+- **Collaborative Resources** - Students can share notes, past exams, and projects across universities.
+- **Search and Filter** - Easy-to-use search and filter functionality for specific resources by keywords and other attributes.
+- **Hashtags and Categories** - Classify resources using hashtags for better accessibility.
+- **AI Integrated learning** - Using AI to develop more resources to study plus making it interactive and fun.
 
-```sh
-npx create-turbo@latest
-```
+## Tech Stack
+The website was built using a full-stack architecture. Here are the key technologies used:
 
-## What's inside?
+### Frontend
+- **React**: Frontend framework for building user interfaces
+- **Tailwind CSS**: For responsive, utility-first CSS styling
 
-This Turborepo includes the following packages/apps:
+### Backend
+- **Prisma**: ORM for database management
+- **Prisma-Accelerate**: Used for connection pooling for our serverless deployment of our app 
+- **Cloudflare Workers and Hono**: For serverless API handling
+- **PostgreSQL**: Database for persistent data storage from neon tech website
 
-### Apps and Packages
+### File Storage
+- **ImageKit**: File hosting and management solutions for image and document uploads.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Environment Variables
+To run this project, you will need to set up the following environment variables:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- `DATABASE_URL` - PostgreSQL database URL
+- `IMAGEKIT_URL` - ImageKit API URL
+- `VITE_REACT_APP_API_URL` - Base URL for the backend API
+- `GEMINI_API_KEY` - Base URL for the backend API
+- `JWT_SECRET` - JWT secret key to sign and verify tokens
 
-### Utilities
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
