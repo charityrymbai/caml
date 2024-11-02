@@ -3,11 +3,12 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "cd apps/backend && npx prisma generate && cd ../.. && turbo dev",
+    "dev": "cd apps/backend && npx prisma generate --no-engine && cd ../.. && turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "migrate_db": "cd apps/backend && npx prisma migrate dev",
-    "generate_db": "cd apps/backend && npx prisma generate"
+    "generate_db": "cd apps/backend && npx prisma generate",
+    "deploy": "cd apps/backend && wrangler deploy --minify"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

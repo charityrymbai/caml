@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfilePic from '../../assets/Images/profile_pic.jpg';
 import LinkButton from "../Components/LinkButton";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
     const navigate = useNavigate();
-    const UserDetail = {
-        name: "Jishnu Duhan",
-        college: "National Institute of Technology, Meghalaya",
-        branch: "B. Tech.",
-        major: "Computer Science and Engineering"
-    };
+
+    const [UserDetail, setUserDetails] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const token = localStorage.getItem("token");
+
+    if (token === null) {
+        navigate("/auth");
+    }
+
+    useEffect(() => {
+        fetch(
+             `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/data/getDashboardDetails`,
+             {
+                  method: 'GET',
+                  headers: {
+                       Authorization: `Bearer ${token}`,
+                  },
+             }
+        )
+             .then((res) => {
+                  return res.json();
+             })
+             .then((data) => {
+                console.log(data);
+                  setUserDetails(data.details);
+                  setLoading(false);
+             });
+   }, []);
     
     return (
         <div className="flex h-screen bg-[#f5f5f5]">

@@ -29,7 +29,7 @@ function App() {
                     <Route path="/lurn" element={<Lurn/>}/>
                     <Route path="/hashlurn" element={<HashLurn/>}/>
                     <Route path="/filter" element={<Filter/>}/>
-                    <Route path="/fileInfo" element={<FileInfo/>}/>
+                    <Route path="/fileinfo" element={<FileInfo/>}/>
                 </Routes>
             </div>
         </Router>
