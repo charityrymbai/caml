@@ -6,7 +6,7 @@ import Button from "../Components/profile/Button.js";
 
 const StudentForm = () => {
   return (
-    <div className="bg-gray-950 min-h-fit h-screen ">
+    <div className="bg-gray-950 min-h-screen h-fit ">
       <div className=" p-40 grid justify-items-center ">
         <div className="overflow-hidden rounded-3xl grid grid-cols-1 w-[95%] md:grid-cols-2 lg:w-[60%] shadow-white shadow-md">
           <div className="p-[30px] bg-[#111d2c] text-white flex flex-col items-center">
