@@ -1,0 +1,91 @@
+$card-space: 3px;
+$total-card: 50; // change_later
+
+
+body {
+  perspective: 1000px;
+}
+
+.board,
+.card,
+.wrapper_flashcard,
+.content_flashcard {
+  transform-style: preserve-3d;
+}
+
+.card {
+  --duration: 1200ms;
+  position: absolute;
+  width: 220px;
+  aspect-ratio: 20/29;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+  transition: all 200ms;
+  pointer-events: none;
+
+  @for $i from 1 through $total-card {
+    &:nth-child(#{$i}) {
+      transform: translateZ($i * $card-space);
+    }
+  }
+}
+
+.wrapper_flashcard {
+  pointer-events: initial;
+  display: block;
+  position: relative;
+  height: 100%;
+  transition: all var(--duration) ease-out;
+  transform-origin: 200% 50%;
+}
+
+.content_flashcard {
+  display: block;
+  height: 100%;
+  transition: all var(--duration);
+}
+
+.face {
+  transition: transform calc(var(--duration) * 3 / 4);
+  transition-delay: calc(var(--duration) / 6);
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+}
+
+.front {
+  transform: rotateZ(0.5turn) rotateY(-0.5turn);
+  border-width: 1px 0px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: #ade2b6f1;
+}
+
+.back {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f5bdbdec;
+}
+
+.card.flipped {
+  @for $i from 1 through $total-card {
+    &:nth-child(#{$i}) {
+      transform: translateZ((4 - $i) * $card-space);
+    }
+  }
+
+  .wrapper_flashcard {
+    transform: rotateY(0.5turn);
+  }
+
+  .content_flashcard {
+    transform: rotateX(-0.5turn) rotateY(1.5turn);
+  }
+}

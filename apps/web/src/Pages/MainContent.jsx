@@ -11,8 +11,9 @@ const MainContent = () => {
         <div className="z-0 grid place-content-center max-w-full sm:max-w-[70%] sm:leading-loose pb-10">
           <h1 className='text-6xl font-minecraft sm:text-7xl'>Introducing CAML</h1>
           <p className='m-10 sm:text-[1.2rem]'>
-              An Artificial Intelligence platform that helps you learn with the help of GAMES that are interactive and fresh. 
-              We offer infinite learning resources for our users that help them learn and grow.
+          Unlock learning like never before! Dive into a collaborative platform 
+          that gathers notes, projects, and PYQs, while gamifying 
+          your experience with AI-driven games to boost engagement and mastery.
           </p>
           <LinkButton toPath="auth" text="Start Exploring" />
         </div>
