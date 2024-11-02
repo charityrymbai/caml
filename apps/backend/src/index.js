@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 
 import authRouter from "./Routes/authRoutes";
+import uploadRouter from "./Routes/uploadRoutes";
 
 const app = new Hono();
 
@@ -12,6 +13,7 @@ app.get("/health", (c) => {
 });
 
 app.route("/api/v1/auth/", authRouter);
+app.route("/api/v1/upload/", uploadRouter);
 
 export default app;
 
