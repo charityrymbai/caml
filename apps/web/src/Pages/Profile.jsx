@@ -45,13 +45,8 @@ const StudentForm = () => {
   };
 
   return (
-<<<<<<< HEAD
     <div className="wrapper min-h-screen h-fit ">
-      <div className=" mx-5 mb-7 flex grid justify-items-center pt-20">
-=======
-    <div className="bg-gray-950 min-h-screen h-fit">
-      <div className="p-40 grid justify-items-center">
->>>>>>> e73354db18cb3a207b29b29fdced682f355ba0b7
+      <div className=" mx-5 mb-7 flex justify-items-center pt-20">
         <div className="overflow-hidden rounded-3xl grid grid-cols-1 w-[95%] md:grid-cols-2 lg:w-[60%] shadow-white shadow-md">
           <div className="p-[30px] bg-[#111d2c] text-white flex flex-col items-center">
             <h2 className="text-4xl font-bold">Your Profile</h2>
