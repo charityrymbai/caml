@@ -58,13 +58,13 @@ function Dashboard() {
             <div className="pt-32 pl-16 flex-col h-fit flex justify-center items-center">
                 <div className="font-anton text-5xl pb-5">Upload Here</div>
                 <div className="flex bg-gray-200 p-10 border-red-950 border-2 border-dashed rounded-lg">
-                    <button className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white mr-5 shadow-md shadow-black font-anton">
+                    <button onClick={()=>navigate("/addProject")} className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white mr-5 shadow-md shadow-black font-anton">
                         Projects
                     </button>
-                    <button className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white mr-5 shadow-md shadow-black font-anton">
+                    <button onClick={()=>navigate("/addFile")} className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white mr-5 shadow-md shadow-black font-anton">
                         Past Year Question Papers
                     </button>
-                    <button className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white shadow-md shadow-black font-anton">
+                    <button onClick={()=>navigate("/addFile")} className="flex bg-black w-72 h-fit p-4 rounded-lg text-2xl justify-center items-center text-white shadow-md shadow-black font-anton">
                         Notes
                     </button>   
                 </div>

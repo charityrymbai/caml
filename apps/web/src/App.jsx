@@ -7,9 +7,11 @@ import Portal from "./Pages/Portal.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import StudentForm from "./Pages/Profile.jsx"
 import OptPage  from "./Pages/OptPage.jsx";
-import FileSelector from "./Pages/Selector.jsx";
+import FileSelector from "./Pages/AddFile.jsx";
+import GetLink from "./Pages/AddLink.jsx";
 import Lurn from "./Pages/Welcome.jsx";
 import Filter from "./Pages/Filter.jsx";
+import FileInfo from "./Pages/FileInfo.jsx";
 function App() {
   return(
     <Router>
@@ -21,9 +23,11 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/profile" element={<StudentForm/>}/>
                     <Route path="/optpage" element={<OptPage/>}/>
-                    <Route path="/selector" element={<FileSelector/>}/>
+                    <Route path="/addFile" element={<FileSelector/>}/>
+                    <Route path="/addlink" element={<GetLink/>}/>
                     <Route path="/lurn" element={<Lurn/>}/>
                     <Route path="/filter" element={<Filter/>}/>
+                    <Route path="/fileInfo" element={<FileInfo/>}/>
                 </Routes>
             </div>
         </Router>
